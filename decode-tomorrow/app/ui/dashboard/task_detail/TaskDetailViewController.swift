@@ -53,9 +53,22 @@ class TaskDetailViewController: UIViewController, Storyboarded {
     
     private func initViews() {
         
-        let m = self.taskViewModel
-        taskTitle.text = m?.title
-        categoryLabel.text
+        let m = self.taskViewModel.model
+        taskTitle.text = m.title ?? ""
+        
+        
+        let cat = TasksCategories(m.category ?? "")
+        categoryLabel.text = cat.text
+        categoryView.backgroundColor = cat.color
+        
+        amountLabel.text = m.amount ?? ""
+        
+        amountLabel.text = "PHP " + String((m.amount?.split(separator: ".")[0])!)
+        
+        taskedByNameLabel.text = "tasked by \(m.user!.name)"
+        hoursLabel.text = m.duration ?? ""
+        
+        descriptionTextView.text = m.description ?? ""
         
         categoryView.cornerRadius = 5
         amountView.cornerRadius = 5

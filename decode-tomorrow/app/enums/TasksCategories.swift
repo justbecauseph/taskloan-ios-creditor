@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 enum TasksCategories: String {
+    
     case creative
     case office
     case academic
@@ -35,4 +36,18 @@ enum TasksCategories: String {
             return #colorLiteral(red: 0.831372549, green: 0.07843137255, blue: 0.3529411765, alpha: 1)
         }
     }
+    
+    init(_ text: String) {
+        switch text {
+        case "creative":
+            self = .creative
+        case "office":
+            self = .office
+        case "academic":
+            self = .academic
+        default:
+            fatalError()
+        }
+    }
+    
 }
