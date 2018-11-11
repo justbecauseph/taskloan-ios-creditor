@@ -147,7 +147,7 @@ class DashboardViewController: UIViewController, Storyboarded {
     }
     
     private func initViews() {
-        markAsDoneButton.styleWhiteBorder()()
+        markAsDoneButton.styleWhiteBorder()
         initTasksListTableView()
         self.amountLabel.text = DashboardViewController.amountOwed
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutHandler))
