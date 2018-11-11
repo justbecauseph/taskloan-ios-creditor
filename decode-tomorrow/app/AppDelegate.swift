@@ -71,6 +71,8 @@ extension AppDelegate {
                 NSAttributedString.Key.font: Fonts.AvenirNextRegular.font(16),
                 NSAttributedString.Key.foregroundColor: UIColor.white
             ], for: .normal)
+        
+        
     }
     
     func initWindow() {
