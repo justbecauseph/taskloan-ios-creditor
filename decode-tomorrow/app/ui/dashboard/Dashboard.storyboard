@@ -71,10 +71,21 @@
                                             <action selector="didTapMarkAsDoneButton:" destination="Bwu-5P-bkK" eventType="touchUpInside" id="jlo-Ug-57b"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You won't be able to get a new task until your current one is done!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ne-EE-VtK">
+                                        <rect key="frame" x="24" y="94" width="303" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="QPo-rQ-agy"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="16"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="8Ne-EE-VtK" firstAttribute="top" secondItem="PBg-9a-Z8r" secondAttribute="top" constant="94" id="1Pe-0v-K87"/>
                                     <constraint firstItem="QK1-Hv-qVk" firstAttribute="centerY" secondItem="PBg-9a-Z8r" secondAttribute="centerY" id="NL3-Xw-HoC"/>
+                                    <constraint firstItem="8Ne-EE-VtK" firstAttribute="leading" secondItem="PBg-9a-Z8r" secondAttribute="leading" constant="24" id="WM3-Ln-YT6"/>
+                                    <constraint firstAttribute="trailing" secondItem="8Ne-EE-VtK" secondAttribute="trailing" constant="24" id="fse-hy-2m7"/>
                                     <constraint firstItem="QK1-Hv-qVk" firstAttribute="centerX" secondItem="PBg-9a-Z8r" secondAttribute="centerX" id="miZ-FR-RgN"/>
                                 </constraints>
                             </view>
