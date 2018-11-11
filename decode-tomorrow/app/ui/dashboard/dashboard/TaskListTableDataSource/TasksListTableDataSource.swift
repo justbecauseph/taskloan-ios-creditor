@@ -34,6 +34,7 @@ class TasksListTableDataSource: NSObject, UITableViewDataSource {
         cell.hoursLabel.text = task.model.duration
         cell.amountValueLabel.text = "PHP " + String((task.model.amount?.split(separator: ".")[0])!)
         cell.paletteView.backgroundColor = TasksCategories(task.model.category!).color
+        
         return cell
     }
     

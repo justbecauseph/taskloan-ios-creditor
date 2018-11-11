@@ -13,9 +13,9 @@ struct LoanAmountResp: Decodable {
     let loanAmount: Int
 }
 
-class LoanAmount {
+class LoanAmountFetcher {
     
-    static let shared = LoanAmount()
+    static let shared = LoanAmountFetcher()
     
     private var dbag = DisposeBag()
     

@@ -40,54 +40,43 @@ class DashboardViewController: UIViewController, Storyboarded {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         guard AppStates.userIsLoggedIn.evaluate else {
             self.navigate(to: .login(self))
             return
         }
         
-        if DashboardViewController.amountOwed != "0.00" {
+        if DashboardViewController.shouldReload { // MARK CAME FROM DOCUMENT UPLOAD
+            self.showHUD()
+            self.tasksListFeature?.fetchTasksList(category: .office)
+            DashboardViewController.shouldReload = false
+        }
+        
+        if DashboardViewController.amountOwed != "0.00" { // Came from loan screen
             
-            self.owedValue = NSDecimalNumber(string: DashboardViewController.amountOwed).doubleValue
-            displayLink = CADisplayLink(target: self, selector: #selector(update))
-            displayLink.add(to: .current, forMode: .common)
-            startDate = Date()
+            animateAmount(NSDecimalNumber(string: DashboardViewController.amountOwed).doubleValue)
             
         } else {
             
-            let cached = self.amountLabel.text
-            self.amountLabel.text = "0.00"
+            // check remotely
             
-            LoanAmount.shared.getLoanAmount { (err, amount) in
-                
-                guard err == nil else {
-                    self.amountLabel.text = cached
-                    self.showAlert(.error, message: err!.localizedDescription)
-                    return
-                }
-                
-                self.amountLabel.text = "0.00"
-                self.owedValue = NSDecimalNumber(value: amount!).doubleValue
-                self.displayLink = CADisplayLink(target: self, selector: #selector(self.update))
-                self.displayLink.add(to: .current, forMode: .common)
-                self.startDate = Date()
-                
-                if amount == 0 {
-                    self.tasksListTableView.isUserInteractionEnabled = true
-                    self.tasksListTableView.alpha = 1.0
-                } else {
-                    // already pre-disabled
-                }
-                
-                if DashboardViewController.shouldReload {
-                    self.showHUD()
-                    self.tasksListFeature?.fetchTasksList(category: .office)
-                    DashboardViewController.shouldReload = false
-                }
-                
+            showHUD()
+            
+            LoanAmountFetcher.shared.getLoanAmount { (error, amount) in
+                self.hideHUD()
+                guard error == nil else { return }
+                self.animateAmount(Double(amount ?? 0))
             }
             
         }
         
+    }
+    
+    private func animateAmount(_ value: Double) {
+        self.owedValue = value
+        displayLink = CADisplayLink(target: self, selector: #selector(update))
+        displayLink.add(to: .current, forMode: .common)
+        startDate = Date()
     }
     
     private var shouldDisableCell: Bool = false
@@ -128,11 +117,6 @@ class DashboardViewController: UIViewController, Storyboarded {
         
         refreshControl.addTarget(self, action: #selector(refreshControlAction), for: .valueChanged)
         self.tasksListTableView.refreshControl = refreshControl
-        
-        
-        // MARK: - Initially disable
-        self.tasksListTableView.isUserInteractionEnabled = false
-        self.tasksListTableView.alpha = 0.30
     }
     
     private func initViews() {

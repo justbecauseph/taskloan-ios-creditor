@@ -30,7 +30,7 @@
 		5C0441E0219692D9006251FD /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0441DF219692D9006251FD /* Fonts.swift */; };
 		5C0441E221969326006251FD /* DateTimeFormats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0441E121969326006251FD /* DateTimeFormats.swift */; };
 		5C302ABE2197B6AB00B12E14 /* TaskDeleter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C302ABD2197B6AA00B12E14 /* TaskDeleter.swift */; };
-		5C302AC12197BE6E00B12E14 /* LoanAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C302AC02197BE6E00B12E14 /* LoanAmount.swift */; };
+		5C302AC32197C72C00B12E14 /* LoanAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C302AC22197C72B00B12E14 /* LoanAmount.swift */; };
 		5C41D3EA2196A39F0092BB18 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C41D3E92196A39F0092BB18 /* Date+.swift */; };
 		5C41D3EC2196A4140092BB18 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C41D3EB2196A4140092BB18 /* String+.swift */; };
 		5C41D3EF2196A6BD0092BB18 /* LoginFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C41D3EE2196A6BD0092BB18 /* LoginFeature.swift */; };
@@ -108,7 +108,7 @@
 		5C0441DF219692D9006251FD /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		5C0441E121969326006251FD /* DateTimeFormats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeFormats.swift; sourceTree = "<group>"; };
 		5C302ABD2197B6AA00B12E14 /* TaskDeleter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDeleter.swift; sourceTree = "<group>"; };
-		5C302AC02197BE6E00B12E14 /* LoanAmount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanAmount.swift; sourceTree = "<group>"; };
+		5C302AC22197C72B00B12E14 /* LoanAmount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoanAmount.swift; sourceTree = "<group>"; };
 		5C41D3E92196A39F0092BB18 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		5C41D3EB2196A4140092BB18 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		5C41D3EE2196A6BD0092BB18 /* LoginFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFeature.swift; sourceTree = "<group>"; };
@@ -302,7 +302,7 @@
 		5C302ABF2197BE3D00B12E14 /* loan_amount */ = {
 			isa = PBXGroup;
 			children = (
-				5C302AC02197BE6E00B12E14 /* LoanAmount.swift */,
+				5C302AC22197C72B00B12E14 /* LoanAmount.swift */,
 			);
 			path = loan_amount;
 			sourceTree = "<group>";
@@ -681,7 +681,7 @@
 				5C41D42B2196DD230092BB18 /* RegistrationResponse.swift in Sources */,
 				5C83CCA5219738AA00991A89 /* DocumentUploadViewController.swift in Sources */,
 				5C83CCB9219748FC00991A89 /* ClaimTaskFeature.swift in Sources */,
-				5C302AC12197BE6E00B12E14 /* LoanAmount.swift in Sources */,
+				5C302AC32197C72C00B12E14 /* LoanAmount.swift in Sources */,
 				5C83CCAE21973FC900991A89 /* UIView+shake.swift in Sources */,
 				5CE91D4E21976B9500E880B2 /* UIView+addDashedBorder.swift in Sources */,
 				5C41D4252196D8B90092BB18 /* RegistrationFeature.swift in Sources */,

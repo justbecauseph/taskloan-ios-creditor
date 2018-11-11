@@ -25,4 +25,5 @@ struct Task: Decodable {
     let createdAt: String?
     let updatedAt: String?
     let user: User?
+    let isClaimedByMe: Bool
 }
