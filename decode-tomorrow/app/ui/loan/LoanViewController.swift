@@ -131,7 +131,10 @@ extension LoanViewController: ClaimTaskFeatureDeletage {
     
     func claimTaskError(error: String) {
         hideHUD()
-        showAlert(.error, message: error)
+        let action = UIViewController.AffirmativeAction.init(name: "OK") {
+            self.navigationController?.popToRootViewController(animated: true)
+        }
+        showAlert(.error, message: "You still have a pending loan!", affirmativeAction: action)
     }
     
 }
