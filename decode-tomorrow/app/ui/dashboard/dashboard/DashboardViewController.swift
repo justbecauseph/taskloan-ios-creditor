@@ -54,6 +54,7 @@ class DashboardViewController: UIViewController, Storyboarded {
         
         if DashboardViewController.amountOwed != "0.00" { // Came from loan screen
             
+            disableTable()
             animateAmount(NSDecimalNumber(string: DashboardViewController.amountOwed).doubleValue)
             
         } else {
@@ -65,7 +66,10 @@ class DashboardViewController: UIViewController, Storyboarded {
             LoanAmountFetcher.shared.getLoanAmount { (error, amount) in
                 self.hideHUD()
                 guard error == nil else { return }
-                self.animateAmount(Double(amount ?? 0))
+                
+                if amount == 0 { self.enableTable() }
+                
+                self.animateAmount(Double(amount!))
             }
             
         }
@@ -117,6 +121,18 @@ class DashboardViewController: UIViewController, Storyboarded {
         
         refreshControl.addTarget(self, action: #selector(refreshControlAction), for: .valueChanged)
         self.tasksListTableView.refreshControl = refreshControl
+        
+        disableTable()
+    }
+    
+    private func disableTable() {
+        self.tasksListTableView.alpha = 0.30
+        self.tasksListTableView.isUserInteractionEnabled = false
+    }
+    
+    private func enableTable() {
+        self.tasksListTableView.alpha = 1.0
+        self.tasksListTableView.isUserInteractionEnabled = true
     }
     
     private func initViews() {
