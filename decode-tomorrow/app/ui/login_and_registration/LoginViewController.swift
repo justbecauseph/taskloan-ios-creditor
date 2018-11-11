@@ -43,13 +43,14 @@ class LoginViewController: UIViewController, Storyboarded {
         emailTextField.style()
         passwordTextField.style()
         loginButton.style()
+        mockUI()
     }
     
     // MARK: - Actions
     
     func mockUI() {
-        emailTextField.text = "mrk@gmail.com"//"student@taskloan.pro"
-        passwordTextField.text = "password"//"secret"
+        emailTextField.text = "student@taskloan.pro"
+        passwordTextField.text = "secret"
     }
     
     @IBAction func didTapLoginButton(_ sender: Any) {
