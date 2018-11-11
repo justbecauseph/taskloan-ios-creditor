@@ -131,7 +131,7 @@ class DashboardViewController: UIViewController, Storyboarded {
         refreshControl.addTarget(self, action: #selector(refreshControlAction), for: .valueChanged)
         self.tasksListTableView.refreshControl = refreshControl
         
-        disableTable()
+//        disableTable()
     }
     
     private func disableTable() {
