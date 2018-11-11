@@ -33,9 +33,6 @@ class LoginViewController: UIViewController, Storyboarded {
         super.viewDidLoad()
         initFeatures()
         initViews()
-        #if DEBUG
-        mockUI()
-        #endif
     }
     
     private func initFeatures() {

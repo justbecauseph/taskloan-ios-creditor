@@ -13,9 +13,9 @@ struct LoanAmountResp: Decodable {
     let loanAmount: Int
 }
 
-class LoanAmountFetcher {
+class MeFetcher {
     
-    static let shared = LoanAmountFetcher()
+    static let shared = MeFetcher()
     
     private var dbag = DisposeBag()
     
@@ -26,6 +26,19 @@ class LoanAmountFetcher {
                 resp(nil, value.loanAmount)
             case .error(let error):
                 resp(error, nil)
+            case .completed:
+                break
+            }
+        }
+    }
+    
+    func markStatusAsDone(resp: @escaping ((Error?) -> Void)) {
+        Provider.sharedRx.request(.markStatusAsDone).mapX(EmptyResponse.self, dBag: dbag) { (event) in
+            switch event {
+            case .next:
+                resp(nil)
+            case .error(let error):
+                resp(error)
             case .completed:
                 break
             }

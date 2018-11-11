@@ -58,21 +58,47 @@
                                     <constraint firstItem="MDF-JQ-nEr" firstAttribute="centerX" secondItem="5pS-aW-z2v" secondAttribute="centerX" id="eG6-gd-Zah"/>
                                 </constraints>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PBg-9a-Z8r">
+                                <rect key="frame" x="12" y="200" width="351" height="467"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QK1-Hv-qVk">
+                                        <rect key="frame" x="115.5" y="218.5" width="120" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="120" id="ZtS-9y-9mu"/>
+                                        </constraints>
+                                        <state key="normal" title="Mark as Done"/>
+                                        <connections>
+                                            <action selector="didTapMarkAsDoneButton:" destination="Bwu-5P-bkK" eventType="touchUpInside" id="jlo-Ug-57b"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="QK1-Hv-qVk" firstAttribute="centerY" secondItem="PBg-9a-Z8r" secondAttribute="centerY" id="NL3-Xw-HoC"/>
+                                    <constraint firstItem="QK1-Hv-qVk" firstAttribute="centerX" secondItem="PBg-9a-Z8r" secondAttribute="centerX" id="miZ-FR-RgN"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.66274509800000003" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="PBg-9a-Z8r" firstAttribute="centerY" secondItem="Tq6-CW-dHP" secondAttribute="centerY" id="98h-xD-4l1"/>
                             <constraint firstItem="Tq6-CW-dHP" firstAttribute="leading" secondItem="FCJ-xM-yAR" secondAttribute="leading" constant="12" id="9RN-st-5vc"/>
                             <constraint firstAttribute="bottom" secondItem="Tq6-CW-dHP" secondAttribute="bottom" id="QNj-DP-S0Q"/>
                             <constraint firstItem="FCJ-xM-yAR" firstAttribute="trailing" secondItem="5pS-aW-z2v" secondAttribute="trailing" id="Twj-We-3k7"/>
+                            <constraint firstItem="PBg-9a-Z8r" firstAttribute="height" secondItem="Tq6-CW-dHP" secondAttribute="height" id="UHT-gA-7bH"/>
+                            <constraint firstItem="PBg-9a-Z8r" firstAttribute="width" secondItem="Tq6-CW-dHP" secondAttribute="width" id="WKm-sp-7XX"/>
                             <constraint firstItem="5pS-aW-z2v" firstAttribute="top" secondItem="FCJ-xM-yAR" secondAttribute="top" id="YrR-9L-16l"/>
                             <constraint firstItem="5pS-aW-z2v" firstAttribute="leading" secondItem="FCJ-xM-yAR" secondAttribute="leading" id="cuk-JW-LPO"/>
                             <constraint firstItem="FCJ-xM-yAR" firstAttribute="trailing" secondItem="Tq6-CW-dHP" secondAttribute="trailing" constant="12" id="hSR-hb-2oY"/>
                             <constraint firstItem="Tq6-CW-dHP" firstAttribute="top" secondItem="5pS-aW-z2v" secondAttribute="bottom" constant="20" id="jZJ-M5-U7q"/>
+                            <constraint firstItem="PBg-9a-Z8r" firstAttribute="centerX" secondItem="Tq6-CW-dHP" secondAttribute="centerX" id="oTH-G4-fcH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="FCJ-xM-yAR"/>
                     </view>
                     <connections>
                         <outlet property="amountLabel" destination="jQ7-5r-PnR" id="UI0-7g-8c1"/>
+                        <outlet property="markAsDoneButton" destination="QK1-Hv-qVk" id="fyg-20-B5x"/>
+                        <outlet property="overlayView" destination="PBg-9a-Z8r" id="Ic5-sG-LBu"/>
                         <outlet property="tasksListTableView" destination="Tq6-CW-dHP" id="Jin-dV-EQ8"/>
                     </connections>
                 </viewController>

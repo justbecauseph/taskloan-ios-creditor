@@ -38,6 +38,9 @@ class DashboardViewController: UIViewController, Storyboarded {
         initViews()
     }
     
+    @IBOutlet weak var overlayView: UIView!
+    @IBOutlet weak var markAsDoneButton: UIButton!
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -52,28 +55,34 @@ class DashboardViewController: UIViewController, Storyboarded {
             DashboardViewController.shouldReload = false
         }
         
-        if DashboardViewController.amountOwed != "0.00" { // Came from loan screen
+        showHUD()
+        
+        MeFetcher.shared.getLoanAmount { (error, amount) in
+            self.hideHUD()
+            guard error == nil else { return }
             
-            disableTable()
-            animateAmount(NSDecimalNumber(string: DashboardViewController.amountOwed).doubleValue)
-            
-        } else {
-            
-            // check remotely
-            
-            showHUD()
-            
-            LoanAmountFetcher.shared.getLoanAmount { (error, amount) in
-                self.hideHUD()
-                guard error == nil else { return }
-                
-                if amount == 0 { self.enableTable() }
-                
-                self.animateAmount(Double(amount!))
+            if amount == 0 {
+                self.enableTable()
+            } else {
+                self.disableTable()
             }
             
+            self.animateAmount(Double(amount!))
         }
         
+//        if DashboardViewController.amountOwed != "0.00" { // Came from loan screen
+//
+//            disableTable()
+//            animateAmount(NSDecimalNumber(string: DashboardViewController.amountOwed).doubleValue)
+//
+//        } else {
+//
+//            // check remotely
+//
+//
+//
+//        }
+//
     }
     
     private func animateAmount(_ value: Double) {
@@ -126,22 +135,47 @@ class DashboardViewController: UIViewController, Storyboarded {
     }
     
     private func disableTable() {
+        self.overlayView.isHidden = false
         self.tasksListTableView.alpha = 0.30
         self.tasksListTableView.isUserInteractionEnabled = false
     }
     
     private func enableTable() {
+        self.overlayView.isHidden = true
         self.tasksListTableView.alpha = 1.0
         self.tasksListTableView.isUserInteractionEnabled = true
     }
     
     private func initViews() {
+        markAsDoneButton.style()
         initTasksListTableView()
         self.amountLabel.text = DashboardViewController.amountOwed
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutHandler))
     }
     
     // MARK: - Action
+    
+    @IBAction func didTapMarkAsDoneButton(_ sender: Any) {
+        showHUD()
+        MeFetcher.shared.markStatusAsDone { (error) in
+            self.hideHUD()
+            
+            let a = UIViewController.AffirmativeAction.init(name: "OK", handler: {
+                DispatchQueue.main.async {
+                    self.animateAmount(0.0)
+                }
+            })
+            
+            self.showAlert(.success, message: "All done!", affirmativeAction: a, cancelAction: nil)
+            
+            guard error == nil else {
+                self.enableTable()
+                return
+            }
+            self.enableTable()
+        }
+    }
+    
     @objc private func refreshControlAction() {
         showHUD()
         refreshControl.beginRefreshing()

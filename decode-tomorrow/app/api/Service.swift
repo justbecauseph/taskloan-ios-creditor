@@ -17,6 +17,7 @@ enum Service {
     case claimTask(ClaimTaskParams)
     case deleteTask
     case me
+    case markStatusAsDone
 }
 
 extension Service: TargetType {
@@ -43,6 +44,8 @@ extension Service: TargetType {
             return "me/task"
         case .me:
             return "me"
+        case .markStatusAsDone:
+            return "me/task/status"
         }
     }
     
@@ -51,7 +54,8 @@ extension Service: TargetType {
         case .login,
              .register,
              .uploadDocument,
-             .claimTask:
+             .claimTask,
+             .markStatusAsDone:
             return .post
         case .getTasksList,
              .me:
@@ -80,6 +84,8 @@ extension Service: TargetType {
             return .requestJSONEncodable(params)
         case .deleteTask, .me:
             return .requestPlain
+        case .markStatusAsDone:
+            return .requestParameters(parameters: ["status": "verified"], encoding: JSONEncoding.default)
         }
     }
     
@@ -113,7 +119,8 @@ extension Service {
              .getTasksList,
              .claimTask,
              .deleteTask,
-             .me:
+             .me,
+             .markStatusAsDone:
             return .loggedIn
         }
     }

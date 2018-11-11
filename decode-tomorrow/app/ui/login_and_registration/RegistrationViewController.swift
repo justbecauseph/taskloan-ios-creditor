@@ -55,10 +55,10 @@ class RegistrationViewController: UIViewController, Storyboarded {
     
     // MARK: - Actions
     func mockInput() {
-        self.phoneNumberTextField.text = "09999999999"
+        self.phoneNumberTextField.text = "09000000000"
         self.passwordTextField.text = "password"
         self.confirmPasswordTextField.text = "password"
-        self.emailTextField.text = "mark.rufino.io@gmail.com"
+        self.emailTextField.text = "mark.rufino.io+0@gmail.com"
         self.nameTextField.text = "Mark Alain D. Rufino"
         self.addressTextField.text = "Metrowalk"
         self.schoolTextField.text = "UA"
