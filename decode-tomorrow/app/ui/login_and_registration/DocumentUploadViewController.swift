@@ -64,6 +64,7 @@ class DocumentUploadViewController: UIViewController, Storyboarded {
     @IBAction func didTapVerifyButton(_ sender: Any) {
         guard let documentImage = documentImageView.image else { return }
         guard let data = documentImage.jpegData(compressionQuality: 0.50) else { return }
+        showHUD()
         self.feature?.uploadDocument(data)
     }
     
@@ -88,6 +89,7 @@ extension DocumentUploadViewController: UIImagePickerControllerDelegate, UINavig
 extension DocumentUploadViewController: DocumentUploadFeatureDelegate {
     
     func documentUploadSuccess() {
+        hideHUD()
         let action = UIAlertController.AffirmativeAction.init(name: "OK") {
             DashboardViewController.shouldReload = true
             UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true, completion: nil)
@@ -96,6 +98,7 @@ extension DocumentUploadViewController: DocumentUploadFeatureDelegate {
     }
     
     func documentUploadError(error: String) {
+        hideHUD()
         showAlert(.error, message: error)
     }
     

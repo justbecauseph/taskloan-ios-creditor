@@ -46,9 +46,12 @@ class DashboardViewController: UIViewController, Storyboarded {
         }
         
         if DashboardViewController.shouldReload {
+            showHUD()
             self.tasksListFeature?.fetchTasksList(category: .office)
             DashboardViewController.shouldReload = false
         }
+        
+        self.amountLabel.text = DashboardViewController.amountOwed
     }
     
     private func initFeatures() {

@@ -63,7 +63,7 @@ extension Service: TargetType {
         case .register(let params):
             return .requestJSONEncodable(params)
         case .uploadDocument(let data):
-            let mfd = MultipartFormData(provider: .data(data), name: "name", fileName: "filename", mimeType: "image/jpeg")
+            let mfd = MultipartFormData(provider: .data(data), name: "id_photo", fileName: "filename", mimeType: "image/jpeg")
             return .uploadMultipart([mfd])
         case .getTasksList:
             return .requestParameters(parameters: ["with[]": "user"], encoding: URLEncoding.default)
