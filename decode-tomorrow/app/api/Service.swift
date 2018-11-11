@@ -15,6 +15,7 @@ enum Service {
     case uploadDocument(Data)
     case getTasksList(TasksCategories)
     case claimTask(ClaimTaskParams)
+    case deleteTask
 }
 
 extension Service: TargetType {
@@ -37,6 +38,8 @@ extension Service: TargetType {
             return "me/documents"
         case .claimTask:
             return "me/task"
+        case .deleteTask:
+            return "me/task"
         }
     }
     
@@ -49,6 +52,8 @@ extension Service: TargetType {
             return .post
         case .getTasksList:
             return .get
+        case .deleteTask:
+            return .delete
         }
     }
     
@@ -69,6 +74,8 @@ extension Service: TargetType {
             return .requestParameters(parameters: ["with[]": "user"], encoding: URLEncoding.default)
         case .claimTask(let params):
             return .requestJSONEncodable(params)
+        case .deleteTask:
+            return .requestPlain
         }
     }
     
@@ -100,7 +107,8 @@ extension Service {
             return .none
         case .uploadDocument,
              .getTasksList,
-             .claimTask:
+             .claimTask,
+             .deleteTask:
             return .loggedIn
         }
     }

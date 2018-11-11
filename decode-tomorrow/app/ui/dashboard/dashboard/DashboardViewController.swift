@@ -51,7 +51,25 @@ class DashboardViewController: UIViewController, Storyboarded {
             DashboardViewController.shouldReload = false
         }
         
-        self.amountLabel.text = DashboardViewController.amountOwed
+        if DashboardViewController.amountOwed != "0.00" {
+            
+            self.owedValue = NSDecimalNumber(string: DashboardViewController.amountOwed).doubleValue
+            self.updatingValue = 0.0
+            displayLink = CADisplayLink(target: self, selector: #selector(update))
+            displayLink.add(to: .current, forMode: .common)
+        }
+        
+    }
+    
+    // MARK: - Eye Candy
+    var displayLink: CADisplayLink!
+    var owedValue: Double = 0.0
+    var updatingValue: Double = 0.0
+    // END EYE CANDY
+    
+    @objc func update() {
+        self.updatingValue += 1.0
+        
     }
     
     private func initFeatures() {
