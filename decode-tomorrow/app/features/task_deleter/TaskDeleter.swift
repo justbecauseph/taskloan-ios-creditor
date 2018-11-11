@@ -15,7 +15,7 @@ class TaskDeleter {
     
     let dBag = DisposeBag()
     
-    func deleteTask() {
+    func deleteTask(then: (() -> Void)) {
         Provider.sharedRx.request(.deleteTask).mapX(EmptyResponse.self, dBag: dBag) { (event) in
             print("")
         }

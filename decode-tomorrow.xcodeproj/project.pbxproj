@@ -30,6 +30,7 @@
 		5C0441E0219692D9006251FD /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0441DF219692D9006251FD /* Fonts.swift */; };
 		5C0441E221969326006251FD /* DateTimeFormats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0441E121969326006251FD /* DateTimeFormats.swift */; };
 		5C302ABE2197B6AB00B12E14 /* TaskDeleter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C302ABD2197B6AA00B12E14 /* TaskDeleter.swift */; };
+		5C302AC12197BE6E00B12E14 /* LoanAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C302AC02197BE6E00B12E14 /* LoanAmount.swift */; };
 		5C41D3EA2196A39F0092BB18 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C41D3E92196A39F0092BB18 /* Date+.swift */; };
 		5C41D3EC2196A4140092BB18 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C41D3EB2196A4140092BB18 /* String+.swift */; };
 		5C41D3EF2196A6BD0092BB18 /* LoginFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C41D3EE2196A6BD0092BB18 /* LoginFeature.swift */; };
@@ -56,7 +57,6 @@
 		5C41D42E2196F02F0092BB18 /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C41D42D2196F02F0092BB18 /* TaskDetailViewController.swift */; };
 		5C41D4312196F0C40092BB18 /* LoanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C41D4302196F0C40092BB18 /* LoanViewController.swift */; };
 		5C41D4332196F0DB0092BB18 /* Loan.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C41D4322196F0DB0092BB18 /* Loan.storyboard */; };
-		5C41D4362196F0F60092BB18 /* LoanFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C41D4352196F0F60092BB18 /* LoanFeature.swift */; };
 		5C41D4382196F2520092BB18 /* TasksListFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C41D4372196F2520092BB18 /* TasksListFeature.swift */; };
 		5C41D43D2196F7980092BB18 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C41D43C2196F7980092BB18 /* UIViewController+.swift */; };
 		5C41D4452196FEE30092BB18 /* TasksListTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C41D4442196FEE30092BB18 /* TasksListTableDataSource.swift */; };
@@ -108,6 +108,7 @@
 		5C0441DF219692D9006251FD /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		5C0441E121969326006251FD /* DateTimeFormats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeFormats.swift; sourceTree = "<group>"; };
 		5C302ABD2197B6AA00B12E14 /* TaskDeleter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDeleter.swift; sourceTree = "<group>"; };
+		5C302AC02197BE6E00B12E14 /* LoanAmount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanAmount.swift; sourceTree = "<group>"; };
 		5C41D3E92196A39F0092BB18 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		5C41D3EB2196A4140092BB18 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		5C41D3EE2196A6BD0092BB18 /* LoginFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFeature.swift; sourceTree = "<group>"; };
@@ -134,7 +135,6 @@
 		5C41D42D2196F02F0092BB18 /* TaskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
 		5C41D4302196F0C40092BB18 /* LoanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanViewController.swift; sourceTree = "<group>"; };
 		5C41D4322196F0DB0092BB18 /* Loan.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Loan.storyboard; sourceTree = "<group>"; };
-		5C41D4352196F0F60092BB18 /* LoanFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanFeature.swift; sourceTree = "<group>"; };
 		5C41D4372196F2520092BB18 /* TasksListFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksListFeature.swift; sourceTree = "<group>"; };
 		5C41D43C2196F7980092BB18 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		5C41D4442196FEE30092BB18 /* TasksListTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TasksListTableDataSource.swift; sourceTree = "<group>"; };
@@ -299,6 +299,14 @@
 			path = task_deleter;
 			sourceTree = "<group>";
 		};
+		5C302ABF2197BE3D00B12E14 /* loan_amount */ = {
+			isa = PBXGroup;
+			children = (
+				5C302AC02197BE6E00B12E14 /* LoanAmount.swift */,
+			);
+			path = loan_amount;
+			sourceTree = "<group>";
+		};
 		5C41D3E82196A3950092BB18 /* extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -317,12 +325,12 @@
 		5C41D3ED2196A6B10092BB18 /* features */ = {
 			isa = PBXGroup;
 			children = (
+				5C302ABF2197BE3D00B12E14 /* loan_amount */,
 				5C302ABC2197B64D00B12E14 /* task_deleter */,
 				5C83CCAB219739F900991A89 /* EmptyResponse.swift */,
 				5C41D4282196D9780092BB18 /* Feature.swift */,
 				5C83CCB7219748F100991A89 /* claim_task */,
 				5C83CCA6219738F100991A89 /* document_upload */,
-				5C41D4342196F0E90092BB18 /* loan */,
 				5C41D3F02196A8010092BB18 /* login */,
 				5C41D4232196D8A20092BB18 /* registration */,
 				5C41D4392196F2570092BB18 /* task_list */,
@@ -418,14 +426,6 @@
 			children = (
 				5C41D4322196F0DB0092BB18 /* Loan.storyboard */,
 				5C41D4302196F0C40092BB18 /* LoanViewController.swift */,
-			);
-			path = loan;
-			sourceTree = "<group>";
-		};
-		5C41D4342196F0E90092BB18 /* loan */ = {
-			isa = PBXGroup;
-			children = (
-				5C41D4352196F0F60092BB18 /* LoanFeature.swift */,
 			);
 			path = loan;
 			sourceTree = "<group>";
@@ -681,12 +681,12 @@
 				5C41D42B2196DD230092BB18 /* RegistrationResponse.swift in Sources */,
 				5C83CCA5219738AA00991A89 /* DocumentUploadViewController.swift in Sources */,
 				5C83CCB9219748FC00991A89 /* ClaimTaskFeature.swift in Sources */,
+				5C302AC12197BE6E00B12E14 /* LoanAmount.swift in Sources */,
 				5C83CCAE21973FC900991A89 /* UIView+shake.swift in Sources */,
 				5CE91D4E21976B9500E880B2 /* UIView+addDashedBorder.swift in Sources */,
 				5C41D4252196D8B90092BB18 /* RegistrationFeature.swift in Sources */,
 				5C41D3F82196ABB70092BB18 /* PrivimiteSequence+mapX.swift in Sources */,
 				5CE91D52219789B100E880B2 /* ReasonsForLoaning.swift in Sources */,
-				5C41D4362196F0F60092BB18 /* LoanFeature.swift in Sources */,
 				5C41D4222196D7250092BB18 /* RegistrationViewController.swift in Sources */,
 				5C41D4002196B8650092BB18 /* LoginViewController.swift in Sources */,
 				5C41D3F42196A81E0092BB18 /* LoginResponse.swift in Sources */,

@@ -54,9 +54,26 @@ class DashboardViewController: UIViewController, Storyboarded {
         if DashboardViewController.amountOwed != "0.00" {
             
             self.owedValue = NSDecimalNumber(string: DashboardViewController.amountOwed).doubleValue
-            self.updatingValue = 0.0
             displayLink = CADisplayLink(target: self, selector: #selector(update))
             displayLink.add(to: .current, forMode: .common)
+            startDate = Date()
+            
+        } else {
+            
+            LoanAmount.shared.getLoanAmount { (err, amount) in
+                
+                guard err == nil else {
+                    self.showAlert(.error, message: err!.localizedDescription)
+                    return
+                }
+                
+                self.amountLabel.text = "0.00"
+                self.owedValue = NSDecimalNumber(value: amount!).doubleValue
+                self.displayLink = CADisplayLink(target: self, selector: #selector(self.update))
+                self.displayLink.add(to: .current, forMode: .common)
+                self.startDate = Date()
+            }
+            
         }
         
     }
@@ -64,12 +81,23 @@ class DashboardViewController: UIViewController, Storyboarded {
     // MARK: - Eye Candy
     var displayLink: CADisplayLink!
     var owedValue: Double = 0.0
-    var updatingValue: Double = 0.0
+    var startDate: Date!
     // END EYE CANDY
     
     @objc func update() {
-        self.updatingValue += 1.0
         
+        let rate = Date().timeIntervalSince(startDate) / 1.0
+        
+        let res = self.owedValue * rate
+        if res >= self.owedValue {
+            let string = String(format: "%.2f", self.owedValue)
+            self.amountLabel.text = string
+            displayLink.remove(from: .current, forMode: .common)
+            return
+        }
+        
+        let string = String(format: "%.2f", res)
+        self.amountLabel.text = string
     }
     
     private func initFeatures() {
@@ -102,7 +130,6 @@ class DashboardViewController: UIViewController, Storyboarded {
     }
     
     @objc private func logoutHandler() {
-        CredentialsManager.shared.clearToken()
         viewDidAppear(false)
     }
     

@@ -16,6 +16,7 @@ enum Service {
     case getTasksList(TasksCategories)
     case claimTask(ClaimTaskParams)
     case deleteTask
+    case me
 }
 
 extension Service: TargetType {
@@ -40,6 +41,8 @@ extension Service: TargetType {
             return "me/task"
         case .deleteTask:
             return "me/task"
+        case .me:
+            return "me"
         }
     }
     
@@ -50,7 +53,8 @@ extension Service: TargetType {
              .uploadDocument,
              .claimTask:
             return .post
-        case .getTasksList:
+        case .getTasksList,
+             .me:
             return .get
         case .deleteTask:
             return .delete
@@ -71,10 +75,10 @@ extension Service: TargetType {
             let mfd = MultipartFormData(provider: .data(data), name: "id_photo", fileName: "filename", mimeType: "image/jpeg")
             return .uploadMultipart([mfd])
         case .getTasksList:
-            return .requestParameters(parameters: ["with[]": "user"], encoding: URLEncoding.default)
+            return .requestParameters(parameters: ["with[]": "user", "status": "unclaimed"], encoding: URLEncoding.default)
         case .claimTask(let params):
             return .requestJSONEncodable(params)
-        case .deleteTask:
+        case .deleteTask, .me:
             return .requestPlain
         }
     }
@@ -108,7 +112,8 @@ extension Service {
         case .uploadDocument,
              .getTasksList,
              .claimTask,
-             .deleteTask:
+             .deleteTask,
+             .me:
             return .loggedIn
         }
     }
