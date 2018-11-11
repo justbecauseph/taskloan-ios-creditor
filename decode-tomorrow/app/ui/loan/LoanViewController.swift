@@ -25,7 +25,7 @@ class LoanViewController: UIViewController, Storyboarded {
     // END OUTLETS
     
     private var reason: ReasonsForLoaning?
-    var feature: LoanFeature?
+    var feature: ClaimTaskFeature?
     
     // MARK: - Init
     
@@ -35,11 +35,21 @@ class LoanViewController: UIViewController, Storyboarded {
         initViews()
     }
     
+    private var taskId: Int!
+    private var loanAmount: String!
+    
+    func initValues(_ taskId: Int, loanAmount: String) {
+        self.taskId = taskId
+        self.loanAmount = loanAmount
+    }
+    
     private func initFeature() {
-        self.feature = LoanFeature(self)
+        self.feature = ClaimTaskFeature(self)
     }
     
     private func initViews() {
+        
+        self.loanAmountText.text = String(loanAmount.split(separator: ".")[0]) + ".00"
 
         dropDownButton.setTitleColor(Colors.teal.uiColor, for: .normal)
         dropDownButton.titleLabel?.font = UIFont.fontAwesome(ofSize: 14, style: FontAwesomeStyle.solid)
@@ -73,6 +83,15 @@ class LoanViewController: UIViewController, Storyboarded {
     }
     
     @IBAction func didTapLoanButton(_ sender: Any) {
+        
+        guard reason != nil else {
+            showAlert(.error, message: "Please select a reason for the loan.")
+            return
+        }
+        
+        showHUD()
+        let params = ClaimTaskParams.init(id: self.taskId, reason: reason!.pickerText)
+        self.feature?.claim(params)
     }
     
 }
@@ -99,12 +118,21 @@ extension LoanViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
 }
 
-extension LoanViewController: LoanFeatureDelegate {
+extension LoanViewController: ClaimTaskFeatureDeletage {
     
-    func getLoanSuccess(_ viewModel: GetLoanViewModel) {
+    func claimTaskSuccess(_ viewModel: ClaimTaskViewModel) {
+        hideHUD()
+        let action = UIViewController.AffirmativeAction.init(name: "OK") {
+            DashboardViewController.amountOwed = viewModel.model.amount!
+            self.navigationController?.popToRootViewController(animated: true)
+        }
+        showAlert(.success, message: "You got your loan!", affirmativeAction: action)
     }
     
-    func getLoanError(error: Error) {
+    func claimTaskError(error: String) {
+        hideHUD()
+        showAlert(.error, message: error)
     }
     
 }
+

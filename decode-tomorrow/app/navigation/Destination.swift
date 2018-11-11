@@ -21,7 +21,7 @@ enum Destination {
     case documentUpload
     case dashboard
     case taskDetails(TaskViewModel)
-    case loan
+    case loan(taskId: Int, loanAmount: String)
     
     var viewController: UIViewController {
         switch self {
@@ -39,8 +39,10 @@ enum Destination {
             let vc = TaskDetailViewController.instanciate()
             vc.initValues(taskViewModel)
             return vc
-        case .loan:
-            return LoanViewController.instanciate()
+        case .loan(let id, let amount):
+            let vc = LoanViewController.instanciate()
+            vc.initValues(id, loanAmount: amount)
+            return vc
         }
     }
     

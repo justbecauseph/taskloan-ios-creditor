@@ -65,8 +65,6 @@ class RegistrationViewController: UIViewController, Storyboarded {
     }
     
     @IBAction func didTapConfirmButton(_ sender: Any) {
-        
-        showHUD()
  
         let hc = "student"
         
@@ -110,6 +108,8 @@ class RegistrationViewController: UIViewController, Storyboarded {
             showAlert(.error, message: "All fields are required!")
             return
         }
+        
+        showHUD()
         
         let params = RegistrationParams(
             role: hc,

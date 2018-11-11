@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -71,6 +72,7 @@
                         <viewLayoutGuide key="safeArea" id="FCJ-xM-yAR"/>
                     </view>
                     <connections>
+                        <outlet property="amountLabel" destination="jQ7-5r-PnR" id="UI0-7g-8c1"/>
                         <outlet property="tasksListTableView" destination="Tq6-CW-dHP" id="Jin-dV-EQ8"/>
                     </connections>
                 </viewController>
@@ -242,7 +244,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="159.5" height="30"/>
                                                 <state key="normal" title="Contact Task Manager"/>
                                                 <connections>
-                                                    <action selector="didtTapContactButton:" destination="M1u-cm-Sz6" eventType="touchUpInside" id="IcJ-CA-LDk"/>
+                                                    <action selector="didTapContactButton:" destination="M1u-cm-Sz6" eventType="touchUpInside" id="IcJ-CA-LDk"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rmj-Ac-q0k">

@@ -35,14 +35,11 @@ class TaskDetailViewController: UIViewController, Storyboarded {
     @IBOutlet weak var clockIconLabel: UILabel!
     // END OUTLETS
 
-    var feature: ClaimTaskFeature?
-
     // MARK: - Init
 
     override func viewDidLoad() {
         super.viewDidLoad()
         initViews()
-        initFeature()
     }
     
     private var taskViewModel: TaskViewModel!
@@ -86,26 +83,12 @@ class TaskDetailViewController: UIViewController, Storyboarded {
         contactButton.styleWhiteBorder()
         claimButton.styleInverted()
     }
-
-    private func initFeature() {
-//        self.feature = ClaimTaskFeature(self)
-    }
-
+    
     // MARK: - Actions
-    @IBAction func didtTapContactButton(_ sender: Any) {
+    @IBAction func didTapContactButton(_ sender: Any) {
     }
     
     @IBAction func didTapClaimButton(_ sender: Any) {
-        self.navigate(to: .loan)
+        self.navigate(to: .loan(taskId: self.taskViewModel.model.id!, loanAmount: self.taskViewModel.model.amount!))
     }
-}
-
-extension TaskDetailViewController: ClaimTaskFeatureDeletage {
-    
-    func claimTaskSuccess(_ viewModel: ClaimTaskViewModel) {
-    }
-    
-    func claimTaskError(error: String) {
-    }
-
 }

@@ -15,5 +15,10 @@ struct ApiError: Decodable {
 
 extension ApiError: Swift.Error, LocalizedError {
 //    var localizedDescription: String { return messages.joined() }
-    var localizedDescription: String { return message }
+//    var localizedDescription: String { return message }
+    
+    var errorDescription: String? {
+        return message
+    }
+    
 }

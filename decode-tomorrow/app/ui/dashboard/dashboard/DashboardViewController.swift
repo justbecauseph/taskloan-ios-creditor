@@ -12,11 +12,13 @@ import UIKit
 class DashboardViewController: UIViewController, Storyboarded {
     
     static var shouldReload: Bool = false
+    static var amountOwed: String = "0.00"
     
     static var storyboardId: String = "DashboardViewController"
     static var storyboard: String = "Dashboard"
     
     // MARK: - Outlets
+    @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var tasksListTableView: UITableView!
     // END OUTLETS
     
@@ -67,6 +69,7 @@ class DashboardViewController: UIViewController, Storyboarded {
     
     private func initViews() {
         initTasksListTableView()
+        self.amountLabel.text = DashboardViewController.amountOwed
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutHandler))
     }
     
