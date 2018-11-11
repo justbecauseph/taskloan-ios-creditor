@@ -45,12 +45,6 @@ class DashboardViewController: UIViewController, Storyboarded {
             return
         }
         
-        if DashboardViewController.shouldReload {
-            showHUD()
-            self.tasksListFeature?.fetchTasksList(category: .office)
-            DashboardViewController.shouldReload = false
-        }
-        
         if DashboardViewController.amountOwed != "0.00" {
             
             self.owedValue = NSDecimalNumber(string: DashboardViewController.amountOwed).doubleValue
@@ -60,9 +54,13 @@ class DashboardViewController: UIViewController, Storyboarded {
             
         } else {
             
+            let cached = self.amountLabel.text
+            self.amountLabel.text = "0.00"
+            
             LoanAmount.shared.getLoanAmount { (err, amount) in
                 
                 guard err == nil else {
+                    self.amountLabel.text = cached
                     self.showAlert(.error, message: err!.localizedDescription)
                     return
                 }
@@ -72,11 +70,27 @@ class DashboardViewController: UIViewController, Storyboarded {
                 self.displayLink = CADisplayLink(target: self, selector: #selector(self.update))
                 self.displayLink.add(to: .current, forMode: .common)
                 self.startDate = Date()
+                
+                if amount == 0 {
+                    self.tasksListTableView.isUserInteractionEnabled = true
+                    self.tasksListTableView.alpha = 1.0
+                } else {
+                    // already pre-disabled
+                }
+                
+                if DashboardViewController.shouldReload {
+                    self.showHUD()
+                    self.tasksListFeature?.fetchTasksList(category: .office)
+                    DashboardViewController.shouldReload = false
+                }
+                
             }
             
         }
         
     }
+    
+    private var shouldDisableCell: Bool = false
     
     // MARK: - Eye Candy
     var displayLink: CADisplayLink!
@@ -114,6 +128,11 @@ class DashboardViewController: UIViewController, Storyboarded {
         
         refreshControl.addTarget(self, action: #selector(refreshControlAction), for: .valueChanged)
         self.tasksListTableView.refreshControl = refreshControl
+        
+        
+        // MARK: - Initially disable
+        self.tasksListTableView.isUserInteractionEnabled = false
+        self.tasksListTableView.alpha = 0.30
     }
     
     private func initViews() {
@@ -130,6 +149,7 @@ class DashboardViewController: UIViewController, Storyboarded {
     }
     
     @objc private func logoutHandler() {
+        CredentialsManager.shared.clearToken()
         viewDidAppear(false)
     }
     
